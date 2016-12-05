@@ -1,0 +1,28 @@
+body{
+	background-color: #283593;
+}
+
+.header{
+	text-align: center;
+	font-family: arial;
+	color: #fff;
+	font-size: 50px;
+}
+
+.option-container{
+	padding: 2% 20%;
+}
+
+.singleplayer, .multiplayer{
+	height: 50px;
+	width: 200px;
+	background-color: #e91ec3;
+	margin: 0 auto;
+}
+
+.singleplayer >h3, .multiplayer > h3{
+	text-align: center;
+	color: #fff;
+	font-family: arial;
+	padding: 15px;
+}
