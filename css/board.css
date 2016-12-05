@@ -5,11 +5,17 @@
 	font-family: arial;
 	font-size: 66px;
 	text-align: center;
+	color: #fff;
+}
+
+.filledX{
+	background-color: #283593;
 	color: #e91e63;
 }
 
-.filled{
+.filledO{
 	background-color: #283593;
+	color: #00e5ff;
 }
 
 .end-game{
@@ -25,7 +31,6 @@
 .msg{
 	display: block;
     margin: 20% auto;
-    background-color: #283593;
     height: auto;
     width: 50%;
     text-align: center;
@@ -33,14 +38,18 @@
 }
 
 .msg > h1{
-	font-size: 50px;
-	font-family: arial;
+	font-size: 90px;
+    font-family: arial;
+    color: #283593;
+    margin: 0px;
 }
 
 .retry{
-	padding: 10px;
-	background-color: #e91e63;
-	color: #fff;
-	border: none;
-	font-family: arial;
+	padding: 14px;
+    background-color: #e91e63;
+    color: #fff;
+    border: none;
+    font-family: arial;
+    font-size: 30px;
+    margin: 5px;
 }

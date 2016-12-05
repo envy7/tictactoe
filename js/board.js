@@ -36,9 +36,9 @@ $('.cell').click(function(e){
 	var $id = $(e.target);
 	$id.text(symbol);
 	$id.unbind("click");
-	$id.addClass('filled');
 	//change value of symbol
 	if(player1){
+		$id.addClass('filledX');
 		symbol = "O";
 		player1 = !player1;
 		board[parseInt(e.target.id)] = 1;
@@ -46,6 +46,7 @@ $('.cell').click(function(e){
 
 	}
 	else{
+		$id.addClass('filledO');
 		symbol = "X";
 		player1 = !player1;
 		board[parseInt(e.target.id)] = -1;
@@ -53,22 +54,24 @@ $('.cell').click(function(e){
 	}
 
 	result = checkwin();
+	//condition for draw
 	if(moves == 9 && result == 0){
 		$('.end-game').css("display","block");
-		$('.msg').text("Draw");
+		$('.msg > h1').text("Draw");
 	}
 })
 
+//hover effects on cells
 $('.cell').mouseenter(function(e){
 	var $id = $(e.target);
-	if(!($id.hasClass("filled"))){
+	if(!($id.hasClass("filledX") || $id.hasClass("filledO"))){
 		$id.text(symbol);
 	}
 })
 
 $('.cell').mouseleave(function(e){
 	var $id = $(e.target);
-	if(!($id.hasClass("filled"))){
+	if(!($id.hasClass("filledX") || $id.hasClass("filledO"))){
 		$id.text("");
 	}
 })
@@ -78,3 +81,6 @@ $('.retry').click(function(){
 })
 
 
+//redirecting to different page
+var myParam = location.search.split('myParam=')[1];
+console.log(myParam);
