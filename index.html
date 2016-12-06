@@ -3,17 +3,37 @@
 <head>
 	<title>Tictactoe</title>
 	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
 </head>
 <body>
 	<h1 class="header">Let's play tictactoe</h1>
 
 	<div class="option-container">
-		<div class="singleplayer">
-			<h3>Vs Computer</h3>
-		</div>
-		<div class="multiplayer">
-			<h3>Vs Human</h3>
-		</div>
+		<a href="board_ai.html">
+			<div class="singleplayer">
+				<h3>Vs Computer</h3>
+			</div>
+		</a>
+		<a href="#">
+			<div class="multiplayer">
+				<h3>Vs Human</h3>
+			</div>
+		</a>
 	</div>
+	<script>
+	  // Initialize Firebase
+	  // TODO: Replace with your project's customized code snippet
+	  	var config = {
+		  apiKey: "AIzaSyCU6W9lpANNbP8GWdw6AhufadhldMq-zLY",
+		  authDomain: "tictactoe-c48e5.firebaseapp.com",
+		  databaseURL: "https://tictactoe-c48e5.firebaseio.com",
+		  storageBucket: "gs://tictactoe-c48e5.appspot.com",
+		};
+		firebase.initializeApp(config);
+	</script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-database.js"></script>
 </body>
 </html>

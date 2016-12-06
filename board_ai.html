@@ -7,13 +7,12 @@
       <link rel="stylesheet" type="text/css" href="css/board.css">
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
     </head>
 
     <body>
       <!--Import jQuery before materialize.js-->
       
-      <table align="center" class="board">
+      <table align="center">
         <tr class="cell-row">
           <td class="cell" id="0"></td>
           <td class="cell" id="1"></td>
@@ -37,20 +36,8 @@
           <button class="retry">Play Again</button>
         </div>
       </div>
-      <script>
-        // Initialize Firebase
-        // TODO: Replace with your project's customized code snippet
-          var config = {
-          apiKey: "AIzaSyCU6W9lpANNbP8GWdw6AhufadhldMq-zLY",
-          authDomain: "tictactoe-c48e5.firebaseapp.com",
-          databaseURL: "https://tictactoe-c48e5.firebaseio.com",
-          storageBucket: "gs://tictactoe-c48e5.appspot.com",
-        };
-        firebase.initializeApp(config);
-      </script>
+      
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src="js/board.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-database.js"></script>
+      <script type="text/javascript" src="js/board_ai.js"></script>
     </body>
   </html>
