@@ -16,7 +16,7 @@ body{
 .singleplayer, .multiplayer{
 	height: 100px;
 	width: 300px;
-	background-color: rgba(255,255,255,0.4);
+	background-color: rgba(255,255,255,0.2);
 	margin: 0 auto;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
@@ -37,35 +37,35 @@ body{
 }
 
 body{
-  background:#ec6a38;
-  -webkit-animation:colour 30s linear infinite;
-	-moz-animation:colour 30s linear infinite;
-  
-}
-@-webkit-keyframes colour{
-	0%{
-		background-color: #ab47bc;
-	}
-	25%{
-		background-color: #5c6bc0;
-	}
-	50%{
-		background-color: #29b6f6; 
-	}
-	75%{
-	    background-color: #5c6bc0;		
-	}
-	100%{
-		background-color: #ab47bc;
-	}
-	
-}
-
-@-moz-keyframes colour{
-	
-
+    background: linear-gradient(120deg, #283593, #e91e63);
+	background-size: 400% 400%;
+	-webkit-animation: InstaMagic 30s ease infinite;
+	-moz-animation: InstaMagic 30s ease infinite;
+	-o-animation: InstaMagic 30s ease infinite;
+	animation: InstaMagic 30s ease infinite;
 }
 
 a, u {
     text-decoration: none;
+}
+
+@-webkit-keyframes InstaMagic {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes InstaMagic {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-o-keyframes InstaMagic {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes InstaMagic {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
