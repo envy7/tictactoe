@@ -37,7 +37,7 @@ dbboardref.on('value', function(snap){
 		retrieved_board_pos = itemSnap.val().boardpos;
 		moves = itemSnap.val().moves;
 		turnof = itemSnap.val().turnof;
-		checkturn(itemSnap.val().turnof, symbol);
+		checkturn(turnof, symbol);
 		board = retrieved_board_pos;
 		var i = 0;
 		var newsymbol = '';
@@ -60,6 +60,7 @@ dbboardref.on('value', function(snap){
 	checkDraw();
 });	
 
+//activate and deactivate boards when other player's turn
 function checkturn(turnof, symbol){
 	console.log("checked");
 	if((turnof == "X" && symbol == "X")||(turnof == "O" && symbol == "O")){
@@ -72,6 +73,7 @@ function checkturn(turnof, symbol){
 	}
 }
 
+//assign symbol to each player
 function assignSymbol(player){
 	if(player == 1){
 		symbol = "X";
@@ -81,6 +83,7 @@ function assignSymbol(player){
 	}
 }
 
+//check if win achieved
 function checkwin(){
 	var sum = 0;
 	for(var combo in winning_combos){
@@ -99,67 +102,87 @@ function checkwin(){
 		}
 		sum = 0;
 	}
-	return 0;
-}
-
-function checkDraw(){
-	if(moves == 9 && result == 0){
+	//draw condition
+	if(moves == 9){
 		$('.end-game').css("display","block");
 		$('.msg > h1').text("Draw");
 	}
 }
 
-//set value of symbol
-var symbol;
-assignSymbol(params.player);
-console.log(symbol);
-
-var turnof = params.turnof;
-checkturn(turnof, symbol);
-
-var min_moves_required = 5;
-var moves = 0;
-var board = [0,0,0,0,0,0,0,0,0];
-var winning_combos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-
-
-//registering clicks and changing the board
-$('.cell').click(function(e){
+function fillBoard(player, event){
+	//update move count
 	moves++
-	var $id = $(e.target);
+	//get target
+	var $id = $(event.target);
+	//add symbol
 	$id.text(symbol);
+	//make board unresponsive
 	$id.unbind("click");
-	//change value of symbol
-	if(params.player == 1){
+
+	if(player == 1){
 		$id.addClass('filledX');
-		board[parseInt(e.target.id)] = 1;
+		board[parseInt(event.target.id)] = 1;
 		DEBUG && console.log(board);
 
 	}
 	else{
 		$id.addClass('filledO');
-		board[parseInt(e.target.id)] = -1;
+		board[parseInt(event.target.id)] = -1;
 		DEBUG && console.log(board);
 	}
+}
 
+function toggleTurn(){
 	if(turnof == "X"){
 		turnof = "O";
 	}
 	else{
 		turnof = "X";
 	}
+}
+
+function updateBoardAtFirebase(){
 	db.ref('games/'+params.board+'/gameprops').set({
 		boardpos : board,
 		moves : moves,
 		turnof : turnof
 	});
-	result = checkwin();
-	//condition for draw
-	checkDraw();
+}
 
+function resetBoardAtFirebase(){
+	db.ref('games/'+params.board+'/gameprops').set({
+		boardpos : [0,0,0,0,0,0,0,0,0],
+		moves : 0,
+		turnof : turnof
+	});
+}
+
+//define constants
+var min_moves_required = 5;
+var moves = 0;
+var board = [0,0,0,0,0,0,0,0,0];
+var winning_combos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+
+//set value of symbol
+var symbol;
+assignSymbol(params.player);
+
+DEBUG && console.log(symbol);
+
+var turnof = params.turnof;
+checkturn(turnof, symbol);
+
+
+
+//registering clicks and changing the board
+$('.cell').click(function(event){
+	fillBoard(params.player, event);
+	toggleTurn();
+	updateBoardAtFirebase();
+	checkwin();
 })
 
-//hover effects on cells
+//hover effect mouse on cell
 $('.cell').mouseenter(function(e){
 	var $id = $(e.target);
 	if(!($id.hasClass("filledX") || $id.hasClass("filledO"))){
@@ -167,6 +190,7 @@ $('.cell').mouseenter(function(e){
 	}
 })
 
+//remove effect as son as mouse moves away
 $('.cell').mouseleave(function(e){
 	var $id = $(e.target);
 	if(!($id.hasClass("filledX") || $id.hasClass("filledO"))){
@@ -175,11 +199,9 @@ $('.cell').mouseleave(function(e){
 })
 
 $('.retry').click(function(){
-	db.ref('games/'+params.board+'/gameprops').set({
-		boardpos : [0,0,0,0,0,0,0,0,0],
-		moves : 0,
-		turnof : turnof
-	});
+	//reset data at firebase
+	resetBoardAtFirebase();
+	//reload page
 	location.reload();
 })
 

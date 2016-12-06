@@ -1,3 +1,10 @@
+.header{
+	text-align: center;
+	font-family: arial;
+	color: #283593;
+	font-size: 50px;
+}
+
 .cell{
 	height: 150px;
 	width: 150px;
