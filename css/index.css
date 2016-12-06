@@ -36,6 +36,58 @@ body{
 	font-size: 25px;
 }
 
+.end-game{
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	height:100%;
+	width: 100%;
+	background-color: rgba(255,255,255,0.7	);
+	display: none;
+}
+
+.msg{
+	display: block;
+    margin: 17% auto;
+    height: auto;
+    width: 80%;
+    padding: 10px;
+    background-color:#fff;
+}
+
+.msg > h1{
+	font-size: 20px;
+    font-family: arial;
+    margin: 5px 10px;
+    color: #283593;
+}
+
+.shareurl{
+	width: 90%;
+    padding: 10px;
+    margin: 10px;
+    font-size: 14px;
+}
+
+.dialog-btn{
+	border: none;
+    padding: 10px;
+    margin: 10px;
+    width: 100px;
+    color: #fff;
+    font-family: arial;
+    font-weight: 900;
+    cursor:pointer;
+}
+
+#start{
+	background-color: #283593;
+}
+
+#end{
+	background-color: #e91e63;
+}
+
 body{
     background: linear-gradient(120deg, #283593, #e91e63);
 	background-size: 400% 400%;

@@ -12,12 +12,20 @@ $('.multiplayer').click(function(){
 	else{
 		turn = "O"
 	}
-	db.ref('games/'+newPostKey+'/gameprops').set({
-		boardpos : [0,0,0,0,0,0,0,0,0],
-		moves : 0,
-		turnof : turn
-	});
-	alert("First turn of "+turn);
-	window.location.href = "file:///home/envy/work/tictactoe/board.html?board="+newPostKey+"&player=1&turnof="+turn;
+
+	var shareLink = "file:///home/envy/work/tictactoe/board.html?board="+newPostKey+"&player=-1&turnof="+turn
+	//alert("First turn of "+turn);
+	$('.end-game').css("display","block");
+	$('.shareurl').val(shareLink);
+
+	$('#start').click(function(){
+		db.ref('games/'+newPostKey+'/gameprops').set({
+			boardpos : [0,0,0,0,0,0,0,0,0],
+			moves : 0,
+			turnof : turn
+		});
+		var redirectLink = "file:///home/envy/work/tictactoe/board.html?board="+newPostKey+"&player=1&turnof="+turn
+		window.location.href = redirectLink;
+	})
 })
 
