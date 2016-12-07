@@ -40,12 +40,28 @@
 }
 
 .msg{
-	display: block;
+	display: none;
     margin: 17% auto;
     height: auto;
     width: 50%;
     text-align: center;
     padding: 10px;
+}
+
+.quitNotif{
+	display: none;
+    margin: 17% auto;
+    height: auto;
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+}
+
+.quitNotif > h1{
+	font-size: 20px;
+    font-family: arial;
+    color: #283593;
+    margin: 0px;
 }
 
 .msg > h1{
@@ -55,7 +71,7 @@
     margin: 0px;
 }
 
-.retry{
+.retry, .quit{
 	padding: 14px;
     background-color: #e91e63;
     color: #fff;

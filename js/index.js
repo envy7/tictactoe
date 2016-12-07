@@ -22,7 +22,10 @@ $('.multiplayer').click(function(){
 		db.ref('games/'+newPostKey+'/gameprops').set({
 			boardpos : [0,0,0,0,0,0,0,0,0],
 			moves : 0,
-			turnof : turn
+			turnof : turn,
+			endgame: false,
+			Xscore: 0,
+			Oscore: 0
 		});
 		var redirectLink = "file:///home/envy/work/tictactoe/board.html?board="+newPostKey+"&player=1&turnof="+turn
 		window.location.href = redirectLink;
