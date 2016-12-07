@@ -65,7 +65,7 @@
 }
 
 .msg > h1{
-	font-size: 90px;
+	font-size: 80px;
     font-family: arial;
     color: #283593;
     margin: 0px;
@@ -79,4 +79,18 @@
     font-family: arial;
     font-size: 30px;
     margin: 5px;
+}
+
+.score{
+	text-align: center;
+	margin: 10px;
+}
+
+.score > h1{
+	display: inline;
+	font-family: arial;
+}
+
+.yourScore, .opponentScore {
+	color: #e91e63;
 }

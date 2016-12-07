@@ -89,7 +89,7 @@ body{
 }
 
 body{
-    background: linear-gradient(120deg, #283593, #e91e63);
+    background: linear-gradient(120deg, #283593, #e91e1e);
 	background-size: 400% 400%;
 	-webkit-animation: InstaMagic 30s ease infinite;
 	-moz-animation: InstaMagic 30s ease infinite;

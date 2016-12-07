@@ -37,13 +37,14 @@ var retrieved_board_pos = [];
 dbboardref = db.ref('games/'+params.board);
 //get realtime data from firebase
 dbboardref.on('value', function(snap){
-	var items = [];
 	snap.forEach(function(itemSnap){
-		checkQuitStatus(itemSnap.val());
-		console.log(itemSnap.val());
-		retrieved_board_pos = itemSnap.val().boardpos;
-		moves = itemSnap.val().moves;
-		turnof = itemSnap.val().turnof;
+		boardStatus = itemSnap.val();
+		console.log(boardStatus);
+		checkQuitStatus(boardStatus);
+		setScore(boardStatus, symbol);
+		retrieved_board_pos = boardStatus.boardpos;
+		moves = boardStatus.moves;
+		turnof = boardStatus.turnof;
 		checkturn(turnof, symbol);
 		board = retrieved_board_pos;
 		var i = 0;
@@ -79,8 +80,22 @@ function checkQuitStatus(boardStatus){
 	}
 }
 
-
-
+function setScore(boardStatus, symbol){
+	Xscore = boardStatus.Xscore;
+	Oscore = boardStatus.Oscore;
+	if(symbol == "X"){
+		$('.yourScore').text(Xscore);
+		$('.opponentScore').text(Oscore);
+	}
+	else{
+		$('.yourScore').text(Oscore);
+		$('.opponentScore').text(Xscore);
+	}
+	DEBUG && console.log(XScore);
+	DEBUG && console.log(OScore);
+	scoreSet = true;
+}
+	
 //activate and deactivate boards when other player's turn
 function checkturn(turnof, symbol){
 	console.log("checked");
@@ -114,13 +129,27 @@ function checkwin(){
 		if(sum == 3){
 			$('.end-game').show();
 			$('.msg').show();
-			$('.msg > h1').text("X wins");
+			if(symbol == "X"){
+				$('.msg > h1').text("You win");
+			}
+			else{
+				$('.msg > h1').text("You lose");
+			}
+			//increment score
+			Xscore++;
 			return 1;
 		}
 		else if(sum == -3){
 			$('.end-game').show();
 			$('.msg').show();
-			$('.msg > h1').text("O wins");
+			if(symbol == "O"){
+				$('.msg > h1').text("You win");
+			}
+			else{
+				$('.msg > h1').text("You lose");
+			}
+			//increment score
+			Oscore++
 			return 1;
 		}
 		sum = 0;
@@ -170,8 +199,8 @@ function updateBoardAtFirebase(){
 		moves : moves,
 		turnof : turnof,
 		endgame: false,
-		Xscore: 0,
-		Oscore: 0
+		Xscore: Xscore,
+		Oscore: Oscore
 	});
 }
 
@@ -181,8 +210,8 @@ function resetBoardAtFirebase(){
 		moves : 0,
 		turnof : turnof,
 		endgame: false,
-		Xscore: 0,
-		Oscore: 0
+		Xscore: Xscore,
+		Oscore: Oscore
 	});
 }
 
@@ -192,8 +221,8 @@ function sendQuitNotif(){
 		moves : 0,
 		turnof : turnof,
 		endgame: true,
-		Xscore: 0,
-		Oscore: 0
+		Xscore: Xscore,
+		Oscore: Oscore
 	});
 }
 
@@ -207,6 +236,9 @@ function redirectToHome(){
 }
 
 //define constants
+var boardStatus;
+var XScore = 0;
+var OScore = 0;
 var haveQuit = false;
 var min_moves_required = 5;
 var moves = 0;
