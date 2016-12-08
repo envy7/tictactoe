@@ -13,7 +13,7 @@ $('.multiplayer').click(function(){
 		turn = "O"
 	}
 
-	var shareLink = "file:///home/envy/work/tictactoe/board.html?board="+newPostKey+"&player=-1&turnof="+turn
+	var shareLink = "https://tictactoe-c48e5.firebaseapp.com/board.html?board="+newPostKey+"&player=-1&turnof="+turn
 	//alert("First turn of "+turn);
 	$('.end-game').css("display","block");
 	$('.shareurl').val(shareLink);
@@ -27,7 +27,7 @@ $('.multiplayer').click(function(){
 			Xscore: 0,
 			Oscore: 0
 		});
-		var redirectLink = "file:///home/envy/work/tictactoe/board.html?board="+newPostKey+"&player=1&turnof="+turn
+		var redirectLink = "https://tictactoe-c48e5.firebaseapp.com/board.html?board="+newPostKey+"&player=1&turnof="+turn
 		window.location.href = redirectLink;
 	})
 })

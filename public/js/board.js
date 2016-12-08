@@ -231,7 +231,7 @@ function deleteBoardAtFirebase(){
 }
 
 function redirectToHome(){
-	var redirectLink = "file:///home/envy/work/tictactoe/index.html"
+	var redirectLink = "https://tictactoe-c48e5.firebaseapp.com/index.html"
 	window.location.href = redirectLink;
 }
 
